@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="c78d731c7b11a32cbe18ac86087ed786af17688a">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7b5ab8f36c1310ea4836395b3dc25641e145d5c4/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0_b28d93f5a2b6e02251da94d3255b584e155324e7/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_6514265da8cc7cf076a6006e15f6aef01d2c3a4d/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0_3ec780858df58b89a7b047625881404b7c7e107b/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_7bff30790e42a9df7503404352a04d5e6dd4e218/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_5ba371b990e6f906c42d3841e948b2de7d836bfe/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="58437072c354ff2b9171c13eea41da688d3d1bbd">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_12882dcfe36509422d234221be36e479ea7ce1d8/classes.dex" />
+    </item>
+    <item
+        jar="/home/laetitia/workspace/android/Set/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/home/laetitia/workspace/android/Set/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_c0547a8246675f43623de780ec3aa77c8e8afdcd/classes.dex" />
+    </item>
+
+</items>

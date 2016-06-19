@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Set</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="solo_button">SINGLE PLAYER</string>
+    <string name="multi_button">MULTIPLAYER</string>
+    <string name="menu">Back to main menu</string>
+    <string name="options_button">OPTIONS</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_game">Game</string>
+    <string name="score">Score:</string>
+    <string name="time">Lenteur:</string>
+    <string name="title_activity_game_over">GameOver</string>
+</resources>

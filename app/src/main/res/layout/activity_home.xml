@@ -1,0 +1,74 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    tools:context="le.set.home">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <LinearLayout android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_overlay"
+        android:orientation="vertical">
+        <TextView android:id="@+id/welcome"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10pt"
+            android:paddingBottom="2pt"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textSize="24pt"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="12pt"
+            android:textColor="#000000" />
+
+        <Button android:id="@+id/solo"
+            android:tag="@string/solo_button"
+            android:layout_width="130pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:textStyle="bold"
+            android:text="@string/solo_button"
+            android:textSize="12pt"
+            android:layout_gravity="center_horizontal"
+            android:onClick="Game"
+            android:alpha="52"
+            android:layout_marginTop="10pt"
+            android:background="#afb7be" />
+
+        <Button android:id="@+id/multi"
+            android:tag="@string/multi_button"
+            android:layout_width="130pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:text="@string/multi_button"
+            android:textStyle="bold"
+            android:textSize="12pt"
+            android:layout_marginTop="10pt"
+            android:layout_gravity="center_horizontal"
+            android:onClick="Game"
+            android:background="#afb7be" />
+
+        <Button android:id="@+id/options"
+            android:tag="@string/options_button"
+            android:layout_width="130pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:textStyle="bold"
+            android:textSize="12pt"
+            android:layout_marginTop="10pt"
+            android:text="@string/options_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20pt"
+            android:background="#afb7be" />
+
+    </LinearLayout>
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+</FrameLayout>

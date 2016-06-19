@@ -1,0 +1,74 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    tools:context="le.set.game_over">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <LinearLayout android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_overlay"
+        android:orientation="vertical">
+        <TextView android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5pt"
+            android:paddingBottom="5pt"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:textSize="18pt"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="12pt"
+            android:textColor="#000000" />
+
+        <TextView android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5pt"
+            android:paddingBottom="5pt"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:textSize="18pt"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="12pt"
+            android:textColor="#000000" />
+
+        <Button android:id="@+id/back_to_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5pt"
+            android:paddingBottom="5pt"
+            android:layout_gravity="center_horizontal"
+            android:text="Back to main menu"
+            android:onClick="Home"
+            android:textSize="18pt"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="12pt"
+            android:textColor="#000000" />
+
+        <Button android:id="@+id/one_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5pt"
+            android:paddingBottom="5pt"
+            android:layout_gravity="center_horizontal"
+            android:text="Just one more game"
+            android:onClick="Game"
+            android:textSize="18pt"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="12pt"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+</FrameLayout>
