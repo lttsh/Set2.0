@@ -11,19 +11,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by Laetitia on 05/03/2016.
+ * Score objects keeps track of the score in a seperate thread.
  */
 public class Score implements  Runnable {
     private int score;
     private TextView score_view;
     private final String score_text= "Score: ";
-    private Condition hasChanged;
-    private Lock lock;
     private Activity activity;
     private boolean isSame;
     public Score(Context context)
     {
-        lock = new ReentrantLock();
-        hasChanged = lock.newCondition();
         isSame = true;
         this.activity = (Activity) context;
         score = 0;
@@ -37,52 +34,33 @@ public class Score implements  Runnable {
     }
 
     @Override
-    public void run() {
-        while(true)
-        {
-            lock.lock();
-            try
-            {
-                while(isSame)
-                {
-                    hasChanged.awaitUninterruptibly();
+    public synchronized void run() {
+        while (true) {
+            while (isSame) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
                 }
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        score_view.setText(score_text+score);
-                    }
-                });
-
             }
-            finally {
-                isSame = true;
-                lock.unlock();
-            }
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    score_view.setText(score_text + score);
+                }
+            });
+            isSame = true;
         }
     }
-    public void increment()
+    public synchronized void increment()
     {
-        lock.lock();
-        try{
             score++;
             isSame=false;
-            hasChanged.signal();
-        }
-        finally {
-            lock.unlock();
-        }
+           notify();
     }
-    public void decrement()
+    public synchronized void decrement()
     {
-        lock.lock();
-        try{
-            score--;
-            isSame=false;
-            hasChanged.signal();
-        }
-        finally {
-            lock.unlock();
-        }
+        score--;
+        isSame=false;
+        notify();
     }
 }
