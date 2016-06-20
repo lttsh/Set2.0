@@ -23,9 +23,9 @@ public class GameOver extends AppCompatActivity {
         long min = time/60000;
         long sec = (time/1000)%60;
         TextView tv = (TextView) findViewById(R.id.score);
-        tv.setText("Score "+score);
+        tv.setText("Score: "+score);
         TextView tv2 = (TextView) findViewById(R.id.time);
-        tv2.setText("Durée de la partie "+min+":"+sec);
+        tv2.setText("Durée de la partie: "+min+":"+sec);
     }
 
     public void Home(View view)
@@ -39,7 +39,5 @@ public class GameOver extends AppCompatActivity {
         intent.putExtra(home.GAME_MODE, mode);
         GameOver.this.finish();
         startActivity(intent);
-
-
     }
 }
