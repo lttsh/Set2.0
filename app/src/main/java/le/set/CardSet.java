@@ -16,18 +16,22 @@ import java.util.concurrent.locks.ReentrantLock;
 * variables: set of variables that are necessary.
 * */
 
-public class CardSet {
+public class CardSet implements Runnable {
     private LinkedList<Integer> set;
-    //private Lock lock;
     private final int max_capacity = 3;
-    //private Condition isFull;
     private utilities variables;
 
     public CardSet(utilities variables) {
         set = new LinkedList<>();
         this.variables = variables;
     }
-
+    @Override
+    public void run() {
+        while (true)
+            try {
+                watcher();
+            } catch (InterruptedException e){}
+    }
     public synchronized boolean push(int card) {
 
         System.out.println("PUSH in a size" + " " + set.size());

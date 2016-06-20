@@ -3,6 +3,7 @@ package le.set;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import java.util.Collections;
@@ -15,6 +16,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Laetitia on 15/03/2016.
+ * Utilities class groups all necessary variables for the game mechanics
+ * Score : keeps track of the score
+ * cards: represents the stack of cards
+ * presentSets: represents the sets available on the board
+ * pos2pan : correspondances between position and panel
+ * id2pos: correspondances between cardID and position on the board
+ * fullplate: refers to a particular state of the game
+ * end: refers to the end game
+ *
  */
 public class utilities {
      public static Score score;
@@ -42,33 +52,12 @@ public class utilities {
         activity = (Activity) game;
         initialize();
     }
-    private static void test()
-    {
-        for (int i=0;i<81;i++)
-        {
-            if (id2pos[i]>-1 && pos2pan[id2pos[i]].card.value!=i)
-            {
-                System.out.println("ID2POS is not correctly updated");
-                System.out.println("Carte "+ i+ " position "+ id2pos[i]);
-                System.out.println("Position "+ id2pos[i] + " carte "+ pos2pan[id2pos[i]].card.value);
-            }
-        }
-
-    }
-    private static void print()
-    {
-        for (int i=0;i<80;i++)
-        {
-            if (id2pos[i]>=0)
-            {
-                System.out.println("CARD "+i+" is at position "+id2pos[i]);
-            }
-        }
-        for (int i=0;i<15;i++)
-        {
-            System.out.println("POSITION "+i+" holds card "+pos2pan[i].card.value);
-        }
-    }
+  /*
+  Game related methods
+   */
+    /*
+    Method: initializes the game and the board
+     */
     private void initialize()
     {
         fullplate.set(false);
@@ -96,72 +85,22 @@ public class utilities {
                     id2pos[c]=4*i+j;
                 }
                 panel.setCard(c);
-                Thread t = new Thread(new CardThread(panel,c));
-                t.start();
+                final Panel p = panel;
+                panel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        p.select();
+                    }
+                });
             }
         }
         //INITIALIZE PRESENT SETS
         InitializeSets();
         checkSet();
-
     }
-    public static void InitializeSets()
-    {
-        for(int i=0;i<12;i++){
-            for(int j=i+1;j<12;j++){
-                int i3 = Card.thirdCard(pos2pan[i].card.value, pos2pan[j].card.value);
-                if(id2pos[i3]!=(-1)){
-                    Triplet t=new Triplet(pos2pan[i].card.value, pos2pan[j].card.value,i3);
-                    presentSets.add(t);
-                }
-            }
-        }
-    }
-    public static void ClearSets(int[] oldCardsID){
-        System.out.println("BEFORE CLEARSETS");
-        display_sets();
-        Triplet t;
-        //We start by removing outdated sets
-        Iterator<Triplet> iter=presentSets.iterator();
-        LinkedList<Triplet> toRemove = new LinkedList<Triplet>();
-        while(iter.hasNext()){
-            t=iter.next();
-            if(t.hasInCommon(oldCardsID)){
-                toRemove.add(t);
-                System.out.println("WANTS TO REMOVE: "+ id2pos[t.c1]+","+id2pos[t.c2]+", "+id2pos[t.c3]);
-
-            }
-        }
-        for(Triplet trip : toRemove){
-            presentSets.remove(trip);
-        }
-        System.out.println("AFTER CLEARSETS");
-        display_sets();
-    }
-
-    public static void UpdateSets(int[] newCardsID)
-    {
-        Triplet t;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<15;j++){
-                int c= pos2pan[j].card.value;
-                if((c!=(-1))&&(c!=newCardsID[i])) {
-                    int i3 = Card.thirdCard(newCardsID[i], c);
-                    if (id2pos[i3] != (-1)) {
-                        t = new Triplet(newCardsID[i], c, i3);
-                        presentSets.add(t);
-                    }
-                }
-            }
-        }
-    }
-    private static void display_sets()
-    {
-        for (Triplet t: presentSets)
-        {
-            System.out.println(id2pos[t.c1]+","+id2pos[t.c2]+", "+id2pos[t.c3]);
-        }
-    }
+    /*
+ Method: checks if there is a Set present on the board and reacts accordingly.
+  */
     synchronized static public void checkSet()
     {
         if (fullplate.get())
@@ -227,17 +166,114 @@ public class utilities {
         //CASE3: SETS
         else
         {
-            if (cards.size()==0)
-            {
-                System.out.println("NO MORE CARDS");
-            }
             System.out.println("THERE WILL BE SETS");
             display_sets();
             if (!(pos2pan[12].display_mode==1 && pos2pan[13].display_mode==1 &&pos2pan[14].display_mode==1))
             {
                 fullplate.set(false);
             }
-
         }
     }
+    /*
+    SET TRACKING METHODS
+     */
+    /*
+    Method: finds the sets that are present on the board at the beginning of the game
+     */
+    public static void InitializeSets()
+    {
+        for(int i=0;i<12;i++){
+            for(int j=i+1;j<12;j++){
+                int i3 = Card.thirdCard(pos2pan[i].card.value, pos2pan[j].card.value);
+                if(id2pos[i3]!=(-1)){
+                    Triplet t=new Triplet(pos2pan[i].card.value, pos2pan[j].card.value,i3);
+                    presentSets.add(t);
+                }
+            }
+        }
+    }
+    /*
+    Method: deletes the sets corresponding to cardID that have been removed
+     */
+    public static void ClearSets(int[] oldCardsID){
+        System.out.println("BEFORE CLEARSETS");
+        display_sets();
+        Triplet t;
+        //We start by removing outdated sets
+        Iterator<Triplet> iter=presentSets.iterator();
+        LinkedList<Triplet> toRemove = new LinkedList<Triplet>();
+        while(iter.hasNext()){
+            t=iter.next();
+            if(t.hasInCommon(oldCardsID)){
+                toRemove.add(t);
+                System.out.println("WANTS TO REMOVE: "+ id2pos[t.c1]+","+id2pos[t.c2]+", "+id2pos[t.c3]);
+
+            }
+        }
+        for(Triplet trip : toRemove){
+            presentSets.remove(trip);
+        }
+        System.out.println("AFTER CLEARSETS");
+        display_sets();
+    }
+    /*
+    Method: add sets by taking into account new cards ID
+     */
+    public static void UpdateSets(int[] newCardsID)
+    {
+        Triplet t;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<15;j++){
+                int c= pos2pan[j].card.value;
+                if((c!=(-1))&&(c!=newCardsID[i])) {
+                    int i3 = Card.thirdCard(newCardsID[i], c);
+                    if (id2pos[i3] != (-1)) {
+                        t = new Triplet(newCardsID[i], c, i3);
+                        presentSets.add(t);
+                    }
+                }
+            }
+        }
+    }
+    /*
+    DEBUG METHODS
+     */
+    private static void test()
+    {
+        for (int i=0;i<81;i++)
+        {
+            if (id2pos[i]>-1 && pos2pan[id2pos[i]].card.value!=i)
+            {
+                System.out.println("ID2POS is not correctly updated");
+                System.out.println("Carte "+ i+ " position "+ id2pos[i]);
+                System.out.println("Position "+ id2pos[i] + " carte "+ pos2pan[id2pos[i]].card.value);
+            }
+        }
+
+    }
+    private static void print()
+    {
+        for (int i=0;i<80;i++)
+        {
+            if (id2pos[i]>=0)
+            {
+                System.out.println("CARD "+i+" is at position "+id2pos[i]);
+            }
+        }
+        for (int i=0;i<15;i++)
+        {
+            System.out.println("POSITION "+i+" holds card "+pos2pan[i].card.value);
+        }
+    }
+    /*
+    Test method: displays the list of all sets present on the board
+     */
+    private static void display_sets()
+    {
+        for (Triplet t: presentSets)
+        {
+            System.out.println(id2pos[t.c1]+","+id2pos[t.c2]+", "+id2pos[t.c3]);
+        }
+    }
+
 }

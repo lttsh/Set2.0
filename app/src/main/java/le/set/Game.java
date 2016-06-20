@@ -21,7 +21,6 @@ public class Game extends AppCompatActivity {
         //Get game mode
                 Intent intent = getIntent();
                 mode = intent.getStringExtra(home.GAME_MODE);
-
                 //Initialize all variables
                 variables = new utilities(Game.this);
                 //Initialize CardSet object which keeps track of the selected cards
@@ -32,10 +31,9 @@ public class Game extends AppCompatActivity {
                 {
                     p.add_selected(selected);
                 }
-
                 //Launch all threads:
                 //WATCHER THREAD
-                new Thread(new SetThread(selected)).start();
+                new Thread(selected).start();
                 //SCORE THREAD
                 new Thread(variables.score).start();
         //initialize chronometer
